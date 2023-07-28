@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 public class VacationResponse {
@@ -15,27 +13,16 @@ public class VacationResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class RequestListDTO {
-        @NotBlank
+    public static class VacationListDTO {
         private String username;
-
-        @NotBlank
         private String email;
-
-        @NotBlank
         private Reason reason;
-
-        @NotBlank
         private Timestamp createdAt;
-
-        @NotBlank
         private Timestamp startDate;
-
-        @NotBlank
         private Timestamp endDate;
 
-        public static RequestListDTO toRequestListDtO(Vacation vacation) {
-            return RequestListDTO.builder()
+        public static VacationListDTO toListDtO(Vacation vacation) {
+            return VacationListDTO.builder()
                     .username(vacation.getUser().getUsername())
                     .email(vacation.getUser().getEmail())
                     .reason(vacation.getReason())
