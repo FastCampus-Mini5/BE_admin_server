@@ -19,11 +19,11 @@ public class VacationService {
     private final VacationRepository vacationRepository;
 
     @Transactional(readOnly = true)
-    public Page<VacationResponse.RequestListDTO> requestList(int page, int size, String status) {
+    public Page<VacationResponse.VacationListDTO> vacationListByStatus(int page, int size, String status) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
 
-        Status requesStatus = Status.valueOf(status);
+        Status requesStatus = Status.valueOf(status.toUpperCase());
         Page<Vacation> vacationPage = vacationRepository.findVacationsByStatus(pageable, requesStatus);
-        return vacationPage.map(VacationResponse.RequestListDTO::toRequestListDtO);
+        return vacationPage.map(VacationResponse.VacationListDTO::toListDtO);
     }
 }
