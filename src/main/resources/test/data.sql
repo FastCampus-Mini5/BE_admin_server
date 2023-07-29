@@ -51,9 +51,9 @@ values (1, '127.0.0.1', date('2023-07-26'), 1),
 
 insert into sign_up_tb
 (id, email, password, username, hire_date, created_date)
-values (1, 'test1@test.com', 'test1234', 'ceo', date('2023-07-27'), date('2023-07-27')),
-       (2, 'test2@test.com', 'test1234', 'cfo', date('2023-08-01'), date('2023-08-01')),
-       (3, 'test3@test.com', 'test1234', 'cto', date('2023-08-06'), date('2023-08-06')),
-       (4, 'test4@test.com', 'test1234', 'manager', date('2023-08-08'), date('2023-08-08')),
-       (5, 'test5@test.com', 'test1234', 'senior', date('2023-07-30'), date('2023-07-30')),
-       (6, 'test6@test.com', 'test1234', 'junior', date('2023-08-07'), date('2023-08-07'));
+values (1, 'test7@test.com', '$2a$10$fIlcyUbp4JxhQa2xUQIh5emZpfbycmqTAkN4im4df7Kj4bzxzKDmm', 'ceo', date('2023-07-27'), date('2023-07-27')),
+       (2, 'test8@test.com', '$2a$10$fIlcyUbp4JxhQa2xUQIh5emZpfbycmqTAkN4im4df7Kj4bzxzKDmm', 'cfo', date('2023-08-01'), date('2023-08-01')),
+       (3, 'test9@test.com', '$2a$10$fIlcyUbp4JxhQa2xUQIh5emZpfbycmqTAkN4im4df7Kj4bzxzKDmm', 'cto', date('2023-08-06'), date('2023-08-06')),
+       (4, 'test10@test.com', '$2a$10$fIlcyUbp4JxhQa2xUQIh5emZpfbycmqTAkN4im4df7Kj4bzxzKDmm', 'manager', date('2023-08-08'), date('2023-08-08')),
+       (5, 'test11@test.com', '$2a$10$fIlcyUbp4JxhQa2xUQIh5emZpfbycmqTAkN4im4df7Kj4bzxzKDmm', 'senior', date('2023-07-30'), date('2023-07-30')),
+       (6, 'test12@test.com', '$2a$10$fIlcyUbp4JxhQa2xUQIh5emZpfbycmqTAkN4im4df7Kj4bzxzKDmm', 'junior', date('2023-08-07'), date('2023-08-07'));
