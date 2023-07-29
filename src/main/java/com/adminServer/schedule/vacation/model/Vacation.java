@@ -2,7 +2,10 @@ package com.adminServer.schedule.vacation.model;
 
 import com.adminServer.schedule.Status;
 import com.adminServer.user.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -11,6 +14,9 @@ import java.sql.Timestamp;
 @Getter
 @Table(name = "vacation_tb")
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vacation {
 
     @Id
