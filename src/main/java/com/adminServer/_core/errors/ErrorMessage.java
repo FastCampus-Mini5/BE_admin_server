@@ -16,4 +16,7 @@ public class ErrorMessage {
     public static final String LOGIN_FAILED = "회원 정보가 존재하지 않습니다.";
 
     public static final String EMPTY_DATA_TO_PAGING = "페이징을 위한 데이터가 존재하지 않습니다.";
+    public static final String EMPTY_DATA_TO_APPROVE_SIGNUP = "회원 가입 요청 승인을 위한 데이터가 존재하지 않습니다.";
+
+    public static final String NOT_FOUND_SIGNUP = "회원 가입 요청 정보가 존재하지 않습니다.";
 }
