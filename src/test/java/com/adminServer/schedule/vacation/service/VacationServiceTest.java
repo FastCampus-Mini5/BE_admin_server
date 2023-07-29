@@ -41,48 +41,16 @@ class VacationServiceTest {
         String validStatus = "PENDING";
         Pageable pageable = mock(Pageable.class);
 
-        User user1 = User.builder()
-                .id(1L)
-                .email("test1@email.com")
-                .username("user1")
-                .password("password123")
-                .role("user")
-                .profileImage("profile1.jpg")
-                .hireDate(Timestamp.valueOf(LocalDateTime.now()))
-                .build();
-
-        User user2 = User.builder()
-                .id(2L)
-                .email("test2@email.com")
-                .username("user2")
-                .password("password123")
-                .role("user")
-                .profileImage("profile2.jpg")
-                .hireDate(Timestamp.valueOf(LocalDateTime.now()))
-                .build();
-
-        User user3 = User.builder()
-                .id(3L)
-                .email("test3@email.com")
-                .username("user3")
-                .password("password123")
-                .role("user")
-                .profileImage("profile3.jpg")
-                .hireDate(Timestamp.valueOf(LocalDateTime.now()))
-                .build();
+        List<User> testUsers = List.of(
+                createUser(1L, "user1"),
+                createUser(2L, "user2"),
+                createUser(3L, "user3")
+        );
 
         List<Vacation> vacationList = List.of(
-                Vacation.builder().id(1L).user(user1).reason(Reason.휴가).status(Status.PENDING)
-                        .startDate(Timestamp.valueOf("2023-07-01 00:00:00")).endDate(Timestamp.valueOf("2023-07-05 00:00:00"))
-                        .approvalDate(null).createdDate(Timestamp.valueOf(LocalDateTime.now())).build(),
-
-                Vacation.builder().id(2L).user(user2).reason(Reason.병가).status(Status.PENDING)
-                        .startDate(Timestamp.valueOf("2023-07-01 00:00:00")).endDate(Timestamp.valueOf("2023-07-05 00:00:00"))
-                        .approvalDate(null).createdDate(Timestamp.valueOf(LocalDateTime.now())).build(),
-
-                Vacation.builder().id(3L).user(user3).reason(Reason.반차).status(Status.PENDING)
-                        .startDate(Timestamp.valueOf("2023-07-01 00:00:00")).endDate(Timestamp.valueOf("2023-07-05 00:00:00"))
-                        .approvalDate(null).createdDate(Timestamp.valueOf(LocalDateTime.now())).build()
+                createVacation(1L, testUsers.get(0), "2023-07-01 00:00:00", "2023-07-05 00:00:00"),
+                createVacation(2L, testUsers.get(1), "2023-07-02 00:00:00", "2023-07-03 00:00:00"),
+                createVacation(3L, testUsers.get(2), "2023-07-03 00:00:00", "2023-07-04 00:00:00")
         );
 
         Page<Vacation> mockPage = new PageImpl<>(vacationList, pageable, vacationList.size());
@@ -122,5 +90,30 @@ class VacationServiceTest {
         assertThrows(EmptyPagingDataRequestException.class,
                 () -> vacationService.vacationListByStatus(pageable, validStatus));
         verify(vacationRepository, never()).findVacationsByStatus(any(), any());
+    }
+
+    private User createUser(Long id, String username) {
+        return User.builder()
+                .id(id)
+                .email("test" + id + "@email.com")
+                .username(username)
+                .password("password123")
+                .role("user")
+                .profileImage("profile" + id + ".jpg")
+                .hireDate(Timestamp.valueOf(LocalDateTime.now()))
+                .build();
+    }
+
+    private Vacation createVacation(Long id, User user, String startDate, String endDate) {
+        return Vacation.builder()
+                .id(id)
+                .user(user)
+                .reason(Reason.반차)
+                .status(Status.PENDING)
+                .approvalDate(null)
+                .createdDate(Timestamp.valueOf(LocalDateTime.now()))
+                .startDate(Timestamp.valueOf(startDate))
+                .endDate(Timestamp.valueOf(endDate))
+                .build();
     }
 }
