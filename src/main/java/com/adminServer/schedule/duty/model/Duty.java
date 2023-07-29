@@ -1,12 +1,9 @@
-package com.adminServer.schedule.duty;
+package com.adminServer.schedule.duty.model;
 
 
 import com.adminServer.schedule.Status;
 import com.adminServer.user.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
