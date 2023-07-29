@@ -23,23 +23,14 @@ public class VacationResponse {
         private Timestamp endDate;
 
         public static ListDTO form(Vacation vacation) {
-            String decryptedUsername = null;
-            String decryptedEmail = null;
-            try {
-                decryptedUsername = AESEncryptionUtil.decrypt(vacation.getUser().getUsername());
-                decryptedEmail = AESEncryptionUtil.decrypt(vacation.getUser().getEmail());
-
-                return ListDTO.builder()
-                        .username(decryptedUsername)
-                        .email(decryptedEmail)
-                        .reason(vacation.getReason())
-                        .createdAt(vacation.getCreatedDate())
-                        .startDate(vacation.getStartDate())
-                        .endDate(vacation.getEndDate())
-                        .build();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            return ListDTO.builder()
+                    .username(vacation.getUser().getUsername())
+                    .email(vacation.getUser().getEmail())
+                    .reason(vacation.getReason())
+                    .createdAt(vacation.getCreatedDate())
+                    .startDate(vacation.getStartDate())
+                    .endDate(vacation.getEndDate())
+                    .build();
         }
     }
 }
