@@ -1,5 +1,7 @@
 package com.adminServer.schedule.vacation.service;
 
+import com.adminServer._core.errors.exception.EmptyPagingDataRequestException;
+import com.adminServer._core.errors.exception.ValidStatusException;
 import com.adminServer.schedule.Status;
 import com.adminServer.schedule.vacation.dto.VacationResponse;
 import com.adminServer.schedule.vacation.model.Vacation;
@@ -18,9 +20,20 @@ public class VacationService {
 
     @Transactional(readOnly = true)
     public Page<VacationResponse.ListDTO> vacationListByStatus(Pageable pageable, String status) {
-        // 예외처리
+        if (pageable == null) throw new EmptyPagingDataRequestException();
+        if (status == null || !isValidStatus(status)) throw new ValidStatusException();
+
         Status requesStatus = Status.valueOf(status.toUpperCase());
         Page<Vacation> vacationPage = vacationRepository.findVacationsByStatus(pageable, requesStatus);
         return vacationPage.map(VacationResponse.ListDTO::form);
+    }
+
+    private boolean isValidStatus(String status) {
+        for (Status validStatus : Status.values()) {
+            if (validStatus.name().equalsIgnoreCase(status)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
