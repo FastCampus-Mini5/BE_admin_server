@@ -36,4 +36,14 @@ public class SignUp {
 
     @CreationTimestamp
     private Timestamp createdDate;
+
+    public User toUser() {
+        return User.builder()
+                .email(email)
+                .username(username)
+                .password(password)
+                .profileImage("/image/default.png")
+                .hireDate(hireDate)
+                .build();
+    }
 }
