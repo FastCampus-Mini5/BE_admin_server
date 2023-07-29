@@ -6,9 +6,7 @@ import com.adminServer.schedule.vacation.model.Vacation;
 import com.adminServer.schedule.vacation.repository.VacationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +17,10 @@ public class VacationService {
     private final VacationRepository vacationRepository;
 
     @Transactional(readOnly = true)
-    public Page<VacationResponse.VacationListDTO> vacationListByStatus(int page, int size, String status) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
-
+    public Page<VacationResponse.ListDTO> vacationListByStatus(Pageable pageable, String status) {
+        // 예외처리
         Status requesStatus = Status.valueOf(status.toUpperCase());
         Page<Vacation> vacationPage = vacationRepository.findVacationsByStatus(pageable, requesStatus);
-        return vacationPage.map(VacationResponse.VacationListDTO::toListDtO);
+        return vacationPage.map(VacationResponse.ListDTO::form);
     }
 }
