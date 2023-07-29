@@ -6,6 +6,10 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ApiResponse {
 
+    public static <T> Result<T> success() {
+        return new Result<>(HttpStatus.NO_CONTENT.value(), true, null, null);
+    }
+
     public static <T> Result<T> success(T response) {
         return new Result<>(HttpStatus.OK.value(), true, response, null);
     }
