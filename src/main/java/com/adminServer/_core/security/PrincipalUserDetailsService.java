@@ -2,7 +2,7 @@ package com.adminServer._core.security;
 
 import com.adminServer._core.errors.ErrorMessage;
 import com.adminServer._core.errors.exception.Exception500;
-import com.adminServer.user.UserRepository;
+import com.adminServer.user.repository.UserRepository;
 import com.adminServer.user.model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
