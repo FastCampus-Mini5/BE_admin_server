@@ -46,4 +46,16 @@ public class GlobalExceptionHandler {
         ApiResponse.Result<Object> apiResult = ApiResponse.error(e.getMessage(), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(apiResult, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(EmptyDtoRequestException.class)
+    public ResponseEntity<ApiResponse.Result<Object>> EmptyDtoRequestError(EmptyDtoRequestException e) {
+        ApiResponse.Result<Object> apiResult = ApiResponse.error(e.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(apiResult, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SignUpServiceException.class)
+    public ResponseEntity<ApiResponse.Result<Object>> SignUpServiceError(SignUpServiceException e) {
+        ApiResponse.Result<Object> apiResult = ApiResponse.error(e.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(apiResult, HttpStatus.BAD_REQUEST);
+    }
 }
