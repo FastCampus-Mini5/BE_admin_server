@@ -1,4 +1,4 @@
-package com.adminServer.user;
+package com.adminServer.user.repository;
 
 import com.adminServer.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
