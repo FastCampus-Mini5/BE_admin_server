@@ -3,6 +3,7 @@ package com.adminServer.schedule.duty.service;
 import com.adminServer._core.errors.ErrorMessage;
 import com.adminServer._core.errors.exception.EmptyDtoRequestException;
 import com.adminServer._core.errors.exception.EmptyPagingDataRequestException;
+import com.adminServer._core.errors.exception.ScheduleServiceException;
 import com.adminServer._core.errors.exception.ValidStatusException;
 import com.adminServer.schedule.Status;
 import com.adminServer.schedule.duty.dto.DutyRequest;
@@ -37,7 +38,7 @@ public class DutyService {
 
         Long id = statusDTO.getId();
         Duty duty = dutyRepository.findById(id).orElseThrow(
-                () -> new NoSuchElementException());
+                () -> new ScheduleServiceException(ErrorMessage.NOT_FOUND_DUTY));
 
         String responseStatus = statusDTO.getStatus();
         Status updatedStatus = isValidStatus(responseStatus);
