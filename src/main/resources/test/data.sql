@@ -15,12 +15,12 @@ values (1, 'test1@test.com', '$2a$10$fIlcyUbp4JxhQa2xUQIh5emZpfbycmqTAkN4im4df7K
 
 insert into vacation_tb
 (id, user_id, created_date, start_date, end_date, reason, status, approval_date)
-values (1, 1, date('2023-07-27'), date('2023-07-27'), date('2023-07-27'), '휴가', 'READY', null),
-       (2, 2, date('2023-07-27'), date('2023-08-01'), date('2023-08-01'), '병가', 'READY', null),
-       (3, 3, date('2023-07-27'), date('2023-08-06'), date('2023-08-06'), '휴가', 'READY', null),
-       (4, 4, date('2023-07-27'), date('2023-08-08'), date('2023-08-08'), '휴가', 'READY', null),
-       (5, 5, date('2023-07-27'), date('2023-07-30'), date('2023-07-30'), '병가', 'READY', null),
-       (6, 6, date('2023-07-27'), date('2023-08-07'), date('2023-08-07'), '휴가', 'READY', null);
+values (1, 1, date('2023-07-27'), date('2023-07-27'), date('2023-07-27'), '휴가', 'PENDING', null),
+       (2, 2, date('2023-07-27'), date('2023-08-01'), date('2023-08-01'), '병가', 'PENDING', null),
+       (3, 3, date('2023-07-27'), date('2023-08-06'), date('2023-08-06'), '휴가', 'PENDING', null),
+       (4, 4, date('2023-07-27'), date('2023-08-08'), date('2023-08-08'), '휴가', 'PENDING', null),
+       (5, 5, date('2023-07-27'), date('2023-07-30'), date('2023-07-30'), '병가', 'PENDING', null),
+       (6, 6, date('2023-07-27'), date('2023-08-07'), date('2023-08-07'), '휴가', 'PENDING', null);
 
 insert into vacation_info_tb
 (id, user_id, remain_vacation, used_vacation)
