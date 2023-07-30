@@ -35,4 +35,9 @@ public class VacationInfo {
         remainVacation = 0;
         usedVacation = 0;
     }
+
+    public void updateInfo() {
+        this.remainVacation -= 1;
+        this.usedVacation += 1;
+    }
 }
