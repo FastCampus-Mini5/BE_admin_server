@@ -1,17 +1,22 @@
-package com.adminServer.schedule.vacation;
+package com.adminServer.schedule.duty.model;
+
 
 import com.adminServer.schedule.Status;
 import com.adminServer.user.model.User;
-import lombok.Getter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Getter
-@Table(name = "vacation_tb")
 @Entity
-public class Vacation {
+@Table(name = "on_duty_tb")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+public class Duty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,24 +26,20 @@ public class Vacation {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Reason reason;
+    private Timestamp dutyDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Status status;
 
-    @Column(nullable = false)
-    private Timestamp startDate;
-
-    @Column(nullable = false)
-    private Timestamp endDate;
-
+    @Column
     private Timestamp approvalDate;
 
     @CreationTimestamp
     private Timestamp createdDate;
+
+    @UpdateTimestamp
+    private Timestamp updatedDate;
 
     @PrePersist
     protected void onCreate() {

@@ -1,7 +1,8 @@
-package com.adminServer.schedule.vacation;
+package com.adminServer.schedule.vacation.model;
 
 import com.adminServer.user.model.User;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
