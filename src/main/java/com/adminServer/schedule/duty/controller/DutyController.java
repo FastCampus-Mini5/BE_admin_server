@@ -1,6 +1,7 @@
 package com.adminServer.schedule.duty.controller;
 
 import com.adminServer._core.util.ApiResponse;
+import com.adminServer.schedule.duty.dto.DutyRequest;
 import com.adminServer.schedule.duty.dto.DutyResponse;
 import com.adminServer.schedule.duty.service.DutyService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -26,5 +29,12 @@ public class DutyController {
             @PathVariable(required = false) String status) {
         Page<DutyResponse.ListDTO> dutyListPage = dutyService.dutyListByStatus(pageable, status);
         return ResponseEntity.ok(ApiResponse.success(dutyListPage));
+    }
+
+    @PostMapping("/approve")
+    public ResponseEntity<ApiResponse.Result<String>> dutyApprove(
+            @RequestBody @Valid DutyRequest.StatusDTO statusDTO, Error error) {
+        dutyService.updateByStatus(statusDTO);
+        return ResponseEntity.ok(ApiResponse.success());
     }
 }
