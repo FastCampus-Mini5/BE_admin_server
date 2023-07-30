@@ -1,13 +1,17 @@
 package com.adminServer.schedule.vacation.service;
 
 import com.adminServer._core.errors.exception.EmptyPagingDataRequestException;
+import com.adminServer._core.errors.exception.ScheduleServiceException;
 import com.adminServer._core.errors.exception.ValidStatusException;
 import com.adminServer.schedule.Status;
+import com.adminServer.schedule.vacation.dto.VacationRequest;
 import com.adminServer.schedule.vacation.dto.VacationResponse;
 import com.adminServer.schedule.vacation.model.Reason;
 import com.adminServer.schedule.vacation.model.Vacation;
+import com.adminServer.schedule.vacation.model.VacationInfo;
 import com.adminServer.schedule.vacation.repository.VacationRepository;
 import com.adminServer.user.model.User;
+import com.adminServer.user.repository.VacationInfoRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -30,6 +35,9 @@ class VacationServiceTest {
 
     @Mock
     private VacationRepository vacationRepository;
+
+    @Mock
+    private VacationInfoRepository vacationInfoRepository;
 
     @InjectMocks
     private VacationService vacationService;
@@ -92,6 +100,61 @@ class VacationServiceTest {
         verify(vacationRepository, never()).findVacationsByStatus(any(), any());
     }
 
+    @DisplayName("연차 신청 승인 성공")
+    @Test
+    void testVacationApproveSuccess() {
+        //given
+        Long vacationId = 1L;
+        VacationRequest.StatusDTO statusDTO = new VacationRequest.StatusDTO(vacationId, "APPROVE");
+
+        User user = createUser(1L, "user1");
+        Vacation existVacation = createVacation(vacationId, user, "2023-07-01 00:00:00", "2023-07-02 00:00:00");
+        when(vacationRepository.findById(vacationId)).thenReturn(Optional.of(existVacation));
+        VacationInfo vacationInfo = createVacationInfo(1L, user);
+        when(vacationInfoRepository.findByUserId(user.getId())).thenReturn(Optional.of(vacationInfo));
+
+        //when
+        vacationService.updateStatus(statusDTO);
+
+        //then
+        verify(vacationRepository, times(1)).findById(vacationId);
+        verify(vacationRepository, times(1)).save(existVacation);
+
+        assertEquals(Status.APPROVE, existVacation.getStatus());
+        verify(vacationInfoRepository, times(1)).findByUserId(any());
+        verify(vacationInfoRepository, times(1)).save(any());
+    }
+
+    @DisplayName("연차 신청 승인 실패 - 유효하지 않은 상태")
+    @Test
+    void testVacationApproveFailWithStatus() {
+        //given
+        Long vacationId = 1L;
+        VacationRequest.StatusDTO statusDTO = new VacationRequest.StatusDTO(vacationId, "INVALID_STATUS");
+
+        //when, then
+        assertThrows(ValidStatusException.class, () -> vacationService.updateStatus(statusDTO));
+        verify(vacationRepository, never()).save(any());
+    }
+
+    @DisplayName("연차 신청 승인 실패 - 해당 연차 데이터가 없는 경우")
+    @Test
+    void testVacationApproveFailWithDTO() {
+        //given
+        Long vacationId = 1L;
+        VacationRequest.StatusDTO statusDTO = new VacationRequest.StatusDTO(vacationId, "APPROVE");
+
+        when(vacationRepository.findById(vacationId)).thenReturn(Optional.empty());
+
+        //when, then
+        assertThrows(ScheduleServiceException.class, () -> vacationService.updateStatus(statusDTO));
+
+        verify(vacationRepository, times(1)).findById(vacationId);
+        verify(vacationRepository, never()).save(any());
+        verify(vacationInfoRepository, never()).findByUserId(any());
+        verify(vacationInfoRepository, never()).save(any());
+    }
+
     private User createUser(Long id, String username) {
         return User.builder()
                 .id(id)
@@ -114,6 +177,15 @@ class VacationServiceTest {
                 .createdDate(Timestamp.valueOf(LocalDateTime.now()))
                 .startDate(Timestamp.valueOf(startDate))
                 .endDate(Timestamp.valueOf(endDate))
+                .build();
+    }
+
+    private VacationInfo createVacationInfo(Long id, User user) {
+        return VacationInfo.builder()
+                .id(id)
+                .user(user)
+                .remainVacation(5)
+                .usedVacation(3)
                 .build();
     }
 }
