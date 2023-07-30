@@ -23,4 +23,9 @@ public class ErrorMessage {
     public static final String NOT_FOUND_SIGNUP = "회원 가입 요청 정보가 존재하지 않습니다.";
 
     public static final String INVALID_STATUS = "유효하지 않은 상태입니다.";
+
+    public static final String NOT_FOUND_VACATION = "연차 승인 요청 정보가 존재하지 않습니다.";
+    public static final String NOT_FOUND_DUTY = "당직 승인 요청 정보가 존재하지 않습니다.";
+    public static final String EMPTY_DATA_TO_VACATION = "연차 승인 요청 승인을 위한 데이터가 존재하지 않습니다.";
+    public static final String EMPTY_DATA_TO_DUTY = "당직 승인 요청 승인을 위한 데이터가 존재하지 않습니다.";
 }

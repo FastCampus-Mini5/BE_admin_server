@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Table(name = "vacation_tb")
@@ -50,5 +51,10 @@ public class Vacation {
     protected void onCreate() {
         status = Status.PENDING;
         reason = Reason.휴가;
+    }
+
+    public void updateStatus(Status status) {
+        this.status = status;
+        this.approvalDate = Timestamp.valueOf(LocalDateTime.now());
     }
 }
