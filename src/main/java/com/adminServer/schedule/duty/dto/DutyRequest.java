@@ -1,4 +1,4 @@
-package com.adminServer.schedule.vacation.dto;
+package com.adminServer.schedule.duty.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,16 +6,17 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-public class VacationRequest {
+@NoArgsConstructor
+public class DutyRequest {
 
     @Getter
-    @AllArgsConstructor
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class StatusDTO {
+
         private Long id;
 
         @NotBlank
         private String status;
     }
 }
-

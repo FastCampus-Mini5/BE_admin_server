@@ -2,7 +2,7 @@ package com.adminServer.schedule.vacation.model;
 
 import com.adminServer.user.model.User;
 import lombok.AllArgsConstructor;
-import lombok.Builder;;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
