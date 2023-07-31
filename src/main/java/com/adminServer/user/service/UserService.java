@@ -1,9 +1,9 @@
 package com.adminServer.user.service;
 
 import com.adminServer._core.errors.exception.EmptyPagingDataRequestException;
-import com.adminServer.schedule.vacation.VacationInfo;
+import com.adminServer.schedule.vacation.model.VacationInfo;
 import com.adminServer.user.dto.UserResponse;
-import com.adminServer.user.repository.VacationInfoRepository;
+import com.adminServer.schedule.vacation.repository.VacationInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

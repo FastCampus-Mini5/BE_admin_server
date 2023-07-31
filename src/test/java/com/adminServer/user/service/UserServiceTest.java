@@ -1,10 +1,10 @@
 package com.adminServer.user.service;
 
 import com.adminServer._core.errors.exception.EmptyPagingDataRequestException;
-import com.adminServer.schedule.vacation.VacationInfo;
+import com.adminServer.schedule.vacation.model.VacationInfo;
 import com.adminServer.user.dto.UserResponse;
 import com.adminServer.user.model.User;
-import com.adminServer.user.repository.VacationInfoRepository;
+import com.adminServer.schedule.vacation.repository.VacationInfoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.adminServer.user.dto;
 
-import com.adminServer.schedule.vacation.VacationInfo;
+import com.adminServer.schedule.vacation.model.VacationInfo;
 import lombok.Builder;
 import lombok.Getter;
 

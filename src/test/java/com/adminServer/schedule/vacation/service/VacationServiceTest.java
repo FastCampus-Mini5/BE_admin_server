@@ -11,7 +11,7 @@ import com.adminServer.schedule.vacation.model.Vacation;
 import com.adminServer.schedule.vacation.model.VacationInfo;
 import com.adminServer.schedule.vacation.repository.VacationRepository;
 import com.adminServer.user.model.User;
-import com.adminServer.user.repository.VacationInfoRepository;
+import com.adminServer.schedule.vacation.repository.VacationInfoRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
