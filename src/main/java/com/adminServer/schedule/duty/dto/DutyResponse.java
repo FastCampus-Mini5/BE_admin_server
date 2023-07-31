@@ -2,13 +2,11 @@ package com.adminServer.schedule.duty.dto;
 
 import com.adminServer._core.util.AESEncryptionUtil;
 import com.adminServer.schedule.duty.model.Duty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DutyResponse {
     @Getter
     @NoArgsConstructor
