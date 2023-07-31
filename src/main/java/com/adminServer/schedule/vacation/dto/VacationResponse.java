@@ -3,12 +3,11 @@ package com.adminServer.schedule.vacation.dto;
 import com.adminServer._core.util.AESEncryptionUtil;
 import com.adminServer.schedule.vacation.model.Reason;
 import com.adminServer.schedule.vacation.model.Vacation;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.sql.Timestamp;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class VacationResponse {
     @Getter
     @NoArgsConstructor
