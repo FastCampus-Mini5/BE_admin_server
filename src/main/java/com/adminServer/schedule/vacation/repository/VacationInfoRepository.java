@@ -1,4 +1,4 @@
-package com.adminServer.user.repository;
+package com.adminServer.schedule.vacation.repository;
 
 import com.adminServer.schedule.vacation.model.VacationInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
