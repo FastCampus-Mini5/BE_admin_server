@@ -11,7 +11,7 @@ import com.adminServer.schedule.vacation.dto.VacationResponse;
 import com.adminServer.schedule.vacation.model.Vacation;
 import com.adminServer.schedule.vacation.model.VacationInfo;
 import com.adminServer.schedule.vacation.repository.VacationRepository;
-import com.adminServer.user.repository.VacationInfoRepository;
+import com.adminServer.schedule.vacation.repository.VacationInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
