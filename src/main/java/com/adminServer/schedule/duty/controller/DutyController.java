@@ -31,7 +31,7 @@ public class DutyController {
         return ResponseEntity.ok(ApiResponse.success(dutyListPage));
     }
 
-    @PostMapping("/approve")
+    @PostMapping("/proceed")
     public ResponseEntity<ApiResponse.Result<String>> dutyApprove(
             @RequestBody @Valid DutyRequest.StatusDTO statusDTO, Error error) {
         dutyService.updateByStatus(statusDTO);
