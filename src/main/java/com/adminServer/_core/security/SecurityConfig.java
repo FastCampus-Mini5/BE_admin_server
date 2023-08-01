@@ -3,10 +3,14 @@ package com.adminServer._core.security;
 import com.adminServer._core.errors.ErrorMessage;
 import com.adminServer._core.errors.exception.Exception401;
 import com.adminServer._core.errors.exception.Exception403;
+import com.adminServer._core.security.encryption.AESEncryption;
+import com.adminServer._core.security.encryption.Encryption;
 import com.adminServer._core.security.jwt.JwtAuthenticationFilter;
 import com.adminServer._core.util.FilterResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,8 +23,16 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+@RequiredArgsConstructor
 @Configuration
 public class SecurityConfig {
+
+    private final Environment environment;
+
+    @Bean
+    public Encryption encryption() {
+        return new AESEncryption(environment);
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
