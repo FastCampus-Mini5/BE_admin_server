@@ -58,4 +58,10 @@ public class GlobalExceptionHandler {
         ApiResponse.Result<Object> apiResult = ApiResponse.error(e.getMessage(), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(apiResult, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler({EncryptException.class, DecryptException.class})
+    public ResponseEntity<ApiResponse.Result<Object>> encryptionError(Exception e) {
+        ApiResponse.Result<Object> apiResult = ApiResponse.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(apiResult, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
