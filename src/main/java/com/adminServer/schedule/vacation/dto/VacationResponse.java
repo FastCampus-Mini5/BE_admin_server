@@ -1,6 +1,5 @@
 package com.adminServer.schedule.vacation.dto;
 
-import com.adminServer._core.util.AESEncryptionUtil;
 import com.adminServer.schedule.vacation.model.Reason;
 import com.adminServer.schedule.vacation.model.Vacation;
 import lombok.AllArgsConstructor;
